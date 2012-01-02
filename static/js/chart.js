@@ -7,6 +7,14 @@ var ChartView = Backbone.View.extend({
     
     initialize: function(args){
 	this.root_elem_id = args["id"];
+	
+	var root_elem = $("#" + this.root_elem_id);
+	var canvas_elem = document.createElement("canvas");
+	canvas_elem.style.zIndex = 0;
+	$(root_elem).append(canvas_elem);
+	this.canvas_ref = $("#" + this.root_elem_id + " canvas");
+	this.canvas_ref = this.canvas_ref[0];
+	
 	_.bindAll(this, 'render');
     },
     
@@ -18,12 +26,6 @@ var ChartView = Backbone.View.extend({
 	var doc_width = $(document).width();
 	var root_elem = $("#" + this.root_elem_id);
 	
-	var canvas_elem = document.createElement("canvas");
-	canvas_elem.style.zIndex = 0;
-	$(root_elem).append(canvas_elem);
-
-	this.canvas_ref = $("#" + this.root_elem_id + " canvas");
-	this.canvas_ref = this.canvas_ref[0];
 	this.canvas_ref.width = $(root_elem).width();
 	this.canvas_ref.height = $(root_elem).height();
 	this.width = this.canvas_ref.width;
@@ -80,7 +82,7 @@ var ChartView = Backbone.View.extend({
 		    + x_tick_span + " : " + y_tick_span, " : " + y_range_length
 	    );*/
 	    
-	    /*ctx.strokeStyle = '#0ee';
+	    ctx.strokeStyle = '#0ee';
 	    ctx.lineWidth = 1;
 	    ctx.beginPath();
 	    for (i=0; i<total_entries; i++) {
@@ -94,7 +96,7 @@ var ChartView = Backbone.View.extend({
 		ctx.moveTo(0, (i*y_tick_span)-0.5);
 		ctx.lineTo(this.width, (i*y_tick_span)-0.5);
 	    }
-	    ctx.stroke();*/
+	    ctx.stroke();
 	    
 	    ctx.strokeStyle = '#000';
 	    ctx.lineWidth = 1
