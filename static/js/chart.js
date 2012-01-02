@@ -169,7 +169,7 @@ var ChartView = Backbone.View.extend({
 
 $(document).ready(function(){
 
-    chart_view_1 = new ChartView({id:"canvas_holder_1"});   
+    var chart_view_1 = new ChartView({id:"canvas_holder_1"});
     $("#draw_1").click(function(event){
 	event.preventDefault();
 	chart_view_1.render();
@@ -180,8 +180,9 @@ $(document).ready(function(){
 	chart_view_1.reset();
 	return false;
     });
+    chart_view_1.render();
     
-    chart_view_2 = new ChartView({id:"canvas_holder_2"});   
+    var chart_view_2 = new ChartView({id:"canvas_holder_2"});   
     $("#draw_2").click(function(event){
 	event.preventDefault();
 	chart_view_2.render();
@@ -192,8 +193,9 @@ $(document).ready(function(){
 	chart_view_2.reset();
 	return false;
     });
-
-    chart_view_3 = new ChartView({id:"canvas_holder_3"});
+    chart_view_2.render();
+    
+    var chart_view_3 = new ChartView({id:"canvas_holder_3"});
     $("#draw_3").click(function(event){
 	event.preventDefault();
 	chart_view_3.render();
@@ -204,5 +206,32 @@ $(document).ready(function(){
 	chart_view_3.reset();
 	return false;
     });
+    chart_view_3.render();
+
+    var chart_view_4 = new ChartView({id:"canvas_holder_4"});
+    $("#draw_4").click(function(event){
+	event.preventDefault();
+	chart_view_4.render();
+	return false;
+    });
+    $("#reset_4").click(function(event){
+	event.preventDefault();
+	chart_view_4.reset();
+	return false;
+    });
+    chart_view_4.render();
+    
+    var chart_view_5 = new ChartView({id:"canvas_holder_5"});
+    $("#draw_5").click(function(event){
+	event.preventDefault();
+	chart_view_5.render();
+	return false;
+    });
+    $("#reset_5").click(function(event){
+	event.preventDefault();
+	chart_view_5.reset();
+	return false;
+    });
+    chart_view_5.render();
     
 });
