@@ -21,21 +21,21 @@ var ChartView = Backbone.View.extend({
 	var canvas_elem = document.createElement("canvas");
 	canvas_elem.style.zIndex = 0;
 	$(root_elem).append(canvas_elem);
+
 	this.canvas_ref = $("#" + this.root_elem_id + " canvas");
 	this.canvas_ref = this.canvas_ref[0];
-	
 	this.canvas_ref.width = $(root_elem).width();
 	this.canvas_ref.height = $(root_elem).height();
 	this.width = this.canvas_ref.width;
 	this.height = this.canvas_ref.height;
-	
+		
 	if( this.canvas_ref.getContext ){
 	    
 	    var ctx = this.canvas_ref.getContext('2d');
-	    this.canvas_ref.addEventListener("click", function(e){
+	    /*this.canvas_ref.addEventListener("click", function(e){
 		var point = chart_obj.getAbsCursorPosition(e);
 		$(root_elem).append(chart_obj.bubble(point));
-	    }, false);
+	    }, false);*/
 	    
 	    var cp = new Array(
 		174.20, 195.65, 195.25, 192.45, 194.05, 186.30, 190.95, 210.50, 214.40,
