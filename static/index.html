@@ -3,12 +3,12 @@
   <head>
     <title>Chart</title>
     <style type="text/css">
-      div#canvas_holder {
-        text-align: center; width: 80%; border: none;
-        margin-left: 10%; margin-right: 10%;
+      div#body_payload {
+        width: 90%; border: none;
+        margin-left: 5%; margin-right: 5%;
       }
-      canvas#canvas {
-        border: none; height: 80%; width: 100%;
+      div.clear {
+        clear: both;
       }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js" type="text/javascript">
@@ -20,12 +20,32 @@
   
   <body>
     
-    <div id="canvas_holder" align="center">
-      <!-- <canvas id="canvas" height="500" width="1024" style="z-index: 0;"></canvas> -->
-      <canvas id="canvas" style="z-index: 0;"></canvas>
+    <div id="body_payload">
+      
+      <div style="float: left; clear: none; width:45%;">
+	<div id="canvas_holder_1" align="center" style="height:60%;">
+	</div>
+	<br />
+	<a href="#" id="draw_1">Draw First</a>
+	<a href="#" id="reset_1">Reset First</a>
+      </div>
+      
+      <div style="float: right; clear: none; width:45%;">
+	<div id="canvas_holder_2" align="center" style="height:60%;">
+	</div>
+	<br />
+	<a href="#" id="draw_2">Draw Second</a>
+	<a href="#" id="reset_2">Reset Second</a>
+      </div>
+
+      <div class="clear"></div>
+
+      <div id="canvas_holder_3" align="center" style="margin-top: 20px; height:300px;">
+      </div>
       <br />
-      <a href="#" id="draw">Draw</a>
-      <a href="#" id="reset">Reset</a>
+      <a href="#" id="draw_3">Draw Third</a>
+      <a href="#" id="reset_3">Reset Third</a>
+      
     </div>
     
   </body>

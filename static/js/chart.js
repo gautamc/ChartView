@@ -1,31 +1,40 @@
 var ChartView = Backbone.View.extend({
     
+    root_elem_id: "",
     canvas_ref: "",
     height: null,
     width: null,
     
     initialize: function(args){
+	this.root_elem_id = args["id"];
 	_.bindAll(this, 'render');
     },
     
     render: function(){
-
+	
 	var chart_obj = this;
-
-	this.canvas_ref = $('canvas#canvas');
+	
+	var doc_height = $(document).height();
+	var doc_width = $(document).width();
+	var root_elem = $("#" + this.root_elem_id);
+	
+	var canvas_elem = document.createElement("canvas");
+	canvas_elem.style.zIndex = 0;
+	$(root_elem).append(canvas_elem);
+	this.canvas_ref = $("#" + this.root_elem_id + " canvas");
 	this.canvas_ref = this.canvas_ref[0];
+	
+	this.canvas_ref.width = $(root_elem).width();
+	this.canvas_ref.height = $(root_elem).height();
 	this.width = this.canvas_ref.width;
 	this.height = this.canvas_ref.height;
 	
-	var obj = document.getElementById("canvas");
-	obj.width = this.width; obj.height = this.height;
-
 	if( this.canvas_ref.getContext ){
 	    
 	    var ctx = this.canvas_ref.getContext('2d');
 	    this.canvas_ref.addEventListener("click", function(e){
 		var point = chart_obj.getAbsCursorPosition(e);
-		$("#canvas_holder").append(chart_obj.bubble(point));
+		$(root_elem).append(chart_obj.bubble(point));
 	    }, false);
 	    
 	    var cp = new Array(
@@ -62,9 +71,9 @@ var ChartView = Backbone.View.extend({
 	    var min_y_val = Math.floor(Math.min.apply(Math, cp));
 	    var total_entries = cp.length;
 	    
-	    var x_tick_span = Math.ceil(this.width/total_entries);
+	    var x_tick_span = Math.floor(this.width/total_entries);
 	    var y_range_length = max_y_val-min_y_val;
-	    var y_tick_span = Math.ceil(this.height/y_range_length);
+	    var y_tick_span = Math.floor(this.height/y_range_length);
 	    
 	    /*console.log(
 		min_y_val + " : " + max_y_val + " : " + total_entries + " : "
@@ -158,18 +167,40 @@ var ChartView = Backbone.View.extend({
 
 $(document).ready(function(){
 
-    chart_view = new  ChartView();
+    chart_view_1 = new ChartView({id:"canvas_holder_1"});   
+    $("#draw_1").click(function(event){
+	event.preventDefault();
+	chart_view_1.render();
+	return false;
+    });
+    $("#reset_1").click(function(event){
+	event.preventDefault();
+	chart_view_1.reset();
+	return false;
+    });
     
-    $("#draw").click(function(event){
+    chart_view_2 = new ChartView({id:"canvas_holder_2"});   
+    $("#draw_2").click(function(event){
 	event.preventDefault();
-	chart_view.render();
+	chart_view_2.render();
+	return false;
+    });
+    $("#reset_2").click(function(event){
+	event.preventDefault();
+	chart_view_2.reset();
 	return false;
     });
 
-    $("#reset").click(function(event){
+    chart_view_3 = new ChartView({id:"canvas_holder_3"});
+    $("#draw_3").click(function(event){
 	event.preventDefault();
-	chart_view.reset();
+	chart_view_3.render();
 	return false;
     });
-
+    $("#reset_3").click(function(event){
+	event.preventDefault();
+	chart_view_3.reset();
+	return false;
+    });
+    
 });
